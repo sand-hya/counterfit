@@ -25,4 +25,4 @@ jobs:
     - name: Generate SBOM
       run: |
         mkdir SBOMOUTPUT
-        spdx-sbom -o SBOMOUTPUT 
+        $RUNNER_TEMP/spdx-sbom -o SBOMOUTPUT 
