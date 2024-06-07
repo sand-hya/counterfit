@@ -17,11 +17,28 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Set up Python
+      run: |
+        # Install pyenv
+        curl https://pyenv.run | bash
+        export PATH="$HOME/.pyenv/bin:$PATH"
+        eval "$(pyenv init --path)"
+        eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)"
+        
+        # Install the required Python version
+        pyenv install 3.8.10
+        pyenv global 3.8.10
+        
+        # Verify Python version
+        python --version
+
     - name: Download and Install SBOM
       run: |
         curl -Lo $RUNNER_TEMP/spdx-sbom-generator-v0.0.10-linux-amd64.tar.gz https://github.com/spdx/spdx-sbom-generator/releases/download/v0.0.10/spdx-sbom-generator-v0.0.10-linux-amd64.tar.gz
         tar -xzf $RUNNER_TEMP/spdx-sbom-generator-v0.0.10-linux-amd64.tar.gz -C $RUNNER_TEMP
         chmod +x $RUNNER_TEMP/spdx-sbom-generator
+
     - name: Generate SBOM
       run: |
         mkdir SBOMOUTPUT
