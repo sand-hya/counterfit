@@ -39,6 +39,10 @@ jobs:
         tar -xzf $RUNNER_TEMP/spdx-sbom-generator-v0.0.10-linux-amd64.tar.gz -C $RUNNER_TEMP
         chmod +x $RUNNER_TEMP/spdx-sbom-generator
 
+    - name: Version
+      run: |
+        pyenv versions
+
     - name: Generate SBOM
       run: |
         mkdir SBOMOUTPUT
