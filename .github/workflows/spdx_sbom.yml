@@ -25,6 +25,7 @@ jobs:
         eval "$(pyenv init --path)"
         eval "$(pyenv init -)"
         eval "$(pyenv virtualenv-init -)"
+        source ~/.bashrc
         
         # Install the required Python version
         pyenv install 3.8.10
