@@ -18,9 +18,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
-
     #- name: Set up pyenv and Python
     #  run: |
         # Install pyenv and add to PATH
@@ -44,8 +41,8 @@ jobs:
         tar -xzf $RUNNER_TEMP/spdx-sbom-generator-v0.0.10-linux-amd64.tar.gz -C $RUNNER_TEMP
         chmod +x $RUNNER_TEMP/spdx-sbom-generator
 
-    - name: Check pyenv versions
-      run: pyenv versions
+    #- name: Check pyenv versions
+    #  run: pyenv versions
 
     - name: Generate SBOM
       run: |
