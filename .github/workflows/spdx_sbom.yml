@@ -8,7 +8,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: read
@@ -17,22 +17,25 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up pyenv and Python
-      run: |
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+
+    #- name: Set up pyenv and Python
+    #  run: |
         # Install pyenv and add to PATH
-        curl https://pyenv.run | bash
-        echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $GITHUB_ENV
-        echo 'eval "$(pyenv init --path)"' >> $GITHUB_ENV
-        echo 'eval "$(pyenv init -)"' >> $GITHUB_ENV
-        echo 'eval "$(pyenv virtualenv-init -)"' >> $GITHUB_ENV
-        source $GITHUB_ENV
+    #    curl https://pyenv.run | bash
+    #    echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $GITHUB_ENV
+    #    echo 'eval "$(pyenv init --path)"' >> $GITHUB_ENV
+    #    echo 'eval "$(pyenv init -)"' >> $GITHUB_ENV
+    #    echo 'eval "$(pyenv virtualenv-init -)"' >> $GITHUB_ENV
+    #    source $GITHUB_ENV
         
         # Install the required Python version
-        pyenv install 3.8.10
-        pyenv global 3.8.10
+    #    pyenv install 3.8.10
+    #    pyenv global 3.8.10
         
         # Verify Python version
-        python --version
+    #    python --version
 
     - name: Download and Install SBOM Generator
       run: |
